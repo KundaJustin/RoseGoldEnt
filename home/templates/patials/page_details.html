@@ -1,14 +1,14 @@
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
-    <h2 class="pb-2 border-bottom mb-5">{{ self.page }}</h2>
+    <h2 class="pb-2 border-bottom mb-5">{{ page }}</h2>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      {% for gallery in self.page.galleries.all %}
+      {% for gallery in galleries %}
       <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
         <div class="card shadow-sm h-100">
           <img
-            src="{{ gallery.gallery.images.file.url }}"
-            alt="{{ gallery.gallery.title }}"
+            src="{{ gallery.picture.images.file.url }}"
+            alt="{{ gallery.picture.title }}"
             class="img-fluid bd-placeholder-img card-img-top cursor-pointer"
             data-bs-toggle="modal"
             data-bs-target="#imageModal"
@@ -32,7 +32,7 @@
   <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="imageModalLabel">{{ self.page }}</h5>
+        <h5 class="modal-title" id="imageModalLabel">{{ page }}</h5>
         <button
           type="button"
           class="btn-close"
@@ -43,11 +43,11 @@
       <div class="modal-body">
         <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            {% for gallery in self.page.galleries.all %}
+            {% for gallery in galleries %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
               <img
-                src="{{ gallery.gallery.images.file.url }}"
-                alt="{{ gallery.gallery.title }}"
+                src="{{ gallery.picture.images.file.url }}"
+                alt="{{ gallery.picture.title }}"
                 class="d-block w-100 modal-img"
               />
             </div>
@@ -109,7 +109,7 @@
   }
 
   .bd-placeholder-img {
-    max-height: 500px;
+    max-height: 450px;
     object-fit: cover;
     object-position: top;
     height: 450px;
@@ -118,22 +118,31 @@
   @media (min-width: 1024px) {
     .carousel-control-next-icon,
     .carousel-control-prev-icon {
-        display: inline-block;
-        width: 2rem;
-        height: 2rem;
-        background-repeat: no-repeat;
-        background-position: 50%;
-        background-size: 100% 100%;
-        color: #000;
-        background-color: #000;
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 100% 100%;
+      color: #000;
+      background-color: #000;
     }
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
     .bd-placeholder-img {
-        max-height: 100vh;
-        object-fit: cover;
-        object-position: top;
+      max-height: 700px;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .bd-placeholder-img {
+      max-height: 500px;
+      object-fit: cover;
+      object-position: top;
+      height: 500px;
     }
   }
 
@@ -144,7 +153,7 @@
 
     .modal-img {
       width: 100vw;
-      height: 100vh; 
+      height: 100vh;
       object-fit: cover;
     }
   }

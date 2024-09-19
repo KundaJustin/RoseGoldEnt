@@ -8,7 +8,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from home.blocks import FeaturedSectionBlock, GallerySectionBlock, HeroBlock, TeamBlock
 
@@ -155,4 +155,12 @@ class GalleryDetailsPage(RoutablePageMixin, Page):
 
     @route(r"^gallery/(?P<slug>[-\w]+)/$", name="gallery_details_page")
     def gallery_detail_view(self, request, slug):
-        return render(request)
+        galleries = self.gallery_details.select_related("picture").all()
+
+        if not galleries.exists():
+            return render(request, "404.html", status=404)
+
+        context = self.get_context(request)
+        context["galleries"] = galleries
+
+        return render(request, "home/gallery_details_page.html", context)

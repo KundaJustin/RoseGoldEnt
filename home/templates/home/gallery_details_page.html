@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+    
+{% block body_class %}RoseGold{% endblock %}
+
+{% block content %}
+    {% include "navbar.html" %}
+
+    {% include 'patials/hero_section.html' %}
+
+    {% include 'patials/page_details.html' %}
+
+    {% include "footer.html" %}
+{% endblock content %}
