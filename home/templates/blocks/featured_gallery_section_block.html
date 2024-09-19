@@ -1,0 +1,73 @@
+{% load custom_filters wagtailroutablepage_tags %}
+
+<div class="container py-5">
+  <h2 class="pb-2 border-bottom">Featured Gallery</h2>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    {% latest_galleries as galleries %}
+    {% for page, gallery in galleries %}
+    <a href="{% routablepageurl page 'gallery_details_page' gallery.picture.slug %}" class="col links">
+      <div
+        class="card card-cover h-100 overflow-hidden overlay rounded-4 shadow-lg"
+        style="
+            background-image: url('{{ gallery.picture.images.file.url }}');
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+        "
+      >
+        <div
+          class="d-flex z-index-9 flex-column h-100 p-5 pb-3 text-white text-shadow-1"
+          style="z-index: 99"
+        >
+          <h3
+            class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"
+          >
+            {{ page }}
+          </h3>
+          <ul class="d-flex list-unstyled mt-auto">
+            <li class="me-auto">
+              <img
+                src="{{ gallery.picture.images.file.url }}"
+                alt="{{ gallery.picture.images.title }} - profile image"
+                width="32"
+                height="32"
+                class="rounded-circle border border-white"
+              />
+            </li>
+            <li class="d-flex align-items-center">
+              <svg
+                class="bi me-2"
+                width="1em"
+                height="1em"
+                role="img"
+                aria-label="Date"
+              >
+                <use xlink:href="#calendar3"></use>
+              </svg>
+              <small>{{ gallery.picture.date|timesince }} ago</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .links h3, h2, h4, p { 
+    text-decoration: none;
+  }
+</style>

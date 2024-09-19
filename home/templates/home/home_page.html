@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}RoseGold{% endblock %}
+
+{% block content %}
+    {% for block in page.body %}
+        {% include_block block %}
+    {% endfor %}
+
+    {% include "footer.html" %}
+{% endblock content %}

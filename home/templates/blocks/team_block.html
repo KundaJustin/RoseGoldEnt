@@ -1,0 +1,47 @@
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <h2 class="display-5 link-body-emphasis title-margin text-center">Our Team</h2>
+    <div class="row">
+      {% for member in self.members %}
+      <div class="col-lg-4 text-center">
+        <div class="bd-placeholder-img rounded-circle" >
+          <img src="{{ member.image.file.url }}" alt="" class="img-fluid-custom" />
+        </div>
+        <h2 class="fw-normal">
+          <font style="vertical-align: inherit"
+            ><font style="vertical-align: inherit">{{ member.name }}</font></font
+          >
+        </h2>
+        <p>
+          <font style="vertical-align: inherit"
+            ><font style="vertical-align: inherit"
+              >{{ member.description }}</font
+            ></font
+          >
+        </p>
+        <p>
+          <a class="btn btn-secondary" href="#"
+            ><font style="vertical-align: inherit"
+              ><font style="vertical-align: inherit">{{ member.title }}</font></font
+            ></a
+          >
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+    .img-fluid-custom {
+        height: 10rem;
+        width: 10rem;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+    }
+
+    .title-margin {
+        margin-bottom: 5rem;
+    }
+</style>
