@@ -67,16 +67,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "rosegold_v1.wsgi.application"
 
-DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ.get(
-            "POSTGRES_URL",
-            "sqlite:///db.sqlite3",
-        ),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+default_database = {
+    "ENGINE": os.environ.get("POSTGRES_ENGINE", "django.db.backends.sqlite3"),
+    "NAME": os.environ.get("POSTGRES_NAME", os.path.join(BASE_DIR, "db.sqlite3")),
+    "USER": os.environ.get("POSTGRES_USER", None),
+    "PASSWORD": os.environ.get("POSTGRES_PASSWORD", None),
+    "HOST": os.environ.get("POSTGRES_HOST", None),
+    "PORT": os.environ.get("POSTGRES_PORT", None),
 }
+
+postgres_url = os.environ.get(
+    "POSTGRES_URL",
+    "sqlite:///db.sqlite3",
+)
+
+if postgres_url:
+    DATABASES = {"default": dj_database_url.parse(postgres_url)}
+else:
+    DATABASES = {"default": default_database}
 
 print("POSTGRES_URL:", os.environ.get("POSTGRES_URL"))
 
