@@ -120,9 +120,9 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-DEFAULT_FILE_STORAGE = "storage_backends.MediaRootS3Boto3Storage"
+DEFAULT_FILE_STORAGE = "rosegold_v1.storage_backends.MediaRootS3Boto3Storage"
 
-STATICFILES_STORAGE = "storage_backends.StaticRootS3Boto3Storage"
+STATICFILES_STORAGE = "rosegold_v1.storage_backends.StaticRootS3Boto3Storage"
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get(
