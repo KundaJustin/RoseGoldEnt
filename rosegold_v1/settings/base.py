@@ -1,11 +1,14 @@
 import os
 import environ
 import dj_database_url
+from pathlib import Path
 
 env = environ.Env()
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
+
+BASE_DIRECTORY = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
@@ -168,6 +171,8 @@ WAGTAILIMAGES_MAX_UPLOAD_SIZE = 50 * 1024 * 1024
 CSRF_TRUSTED_ORIGINS = [
     'https://www.rosegold-ent.com',
 ]
+
+COMPRESS_ROOT = BASE_DIRECTORY / "static"
 
 CACHES = {
     "default": {
