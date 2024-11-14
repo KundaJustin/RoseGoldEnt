@@ -162,3 +162,23 @@ WAGTAILDOCS_EXTENSIONS = [
 DATA_UPLOAD_MAX_MEMORY_SIZE = 200 * 1024 * 1024
 FILE_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024
 WAGTAILIMAGES_MAX_UPLOAD_SIZE = 50 * 1024 * 1024
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.rosegold-ent.com',
+]
+
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
+CACHE_TTL = 60 * 15
+
