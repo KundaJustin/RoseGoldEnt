@@ -169,8 +169,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.rosegold-ent.com',
 ]
 
-COMPRESS_ROOT = BASE_DIR / "static"
-
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
