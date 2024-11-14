@@ -16,11 +16,11 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - nkwazi_postgres_data:/var/lib/postgresql/data
+      - rosegold_postgres_data:/var/lib/postgresql/data
     env_file:
       - .env.prod.db
     environment:
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_NAME: ${DATABASE_NAME}
 
@@ -30,4 +30,4 @@ services:
       - '6379:6379'
 
 volumes:
-  nkwazi_postgres_data:
+  rosegold_postgres_data:
