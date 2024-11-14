@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "compressor",
+    
 ]
 
 MIDDLEWARE = [
@@ -169,7 +169,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.rosegold-ent.com',
 ]
 
-
+COMPRESS_ROOT = BASE_DIR / "static"
 
 CACHES = {
     "default": {
