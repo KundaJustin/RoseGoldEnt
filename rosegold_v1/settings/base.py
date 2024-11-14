@@ -1,14 +1,11 @@
 import os
 import environ
 import dj_database_url
-from pathlib import Path
 
 env = environ.Env()
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
-BASE_DIRECTORY = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
@@ -35,7 +32,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
 ]
 
 MIDDLEWARE = [
@@ -124,7 +120,7 @@ STATICFILES_FINDERS = [
 
 DEFAULT_FILE_STORAGE = "rosegold_v1.storage_backends.MediaRootS3Boto3Storage"
 
-STATICFILES_STORAGE = "rosegold_v1.storage_backends.StaticToS3Storage"
+STATICFILES_STORAGE = "rosegold_v1.storage_backends.StaticRootS3Boto3Storage"
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get(
@@ -172,7 +168,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.rosegold-ent.com',
 ]
 
-COMPRESS_ROOT = BASE_DIRECTORY / "static"
+
 
 CACHES = {
     "default": {
