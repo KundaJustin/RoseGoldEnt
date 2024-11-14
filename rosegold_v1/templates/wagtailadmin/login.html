@@ -1,0 +1,11 @@
+{% extends "wagtailadmin/login.html" %}
+
+{% block branding_login %}RoseGold{% endblock %}
+
+{% load static %}
+
+{% block branding_logo %}
+    <div style="display: none;" class="shoppaz-logo">
+        <img src="{% static 'img/icon.png' %}" alt="Logo" width="70" />
+    </div>
+{% endblock %}
