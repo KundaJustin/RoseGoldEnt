@@ -78,8 +78,7 @@ default_database = {
 }
 
 postgres_url = os.environ.get(
-    "POSTGRES_URL",
-    "sqlite:///db.sqlite3",
+    "POSTGRES_URL"
 )
 
 if postgres_url:
@@ -87,7 +86,6 @@ if postgres_url:
 else:
     DATABASES = {"default": default_database}
 
-print("POSTGRES_URL:", os.environ.get("POSTGRES_URL"))
 
 AUTH_PASSWORD_VALIDATORS = [
     {

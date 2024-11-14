@@ -30,6 +30,9 @@ class HomePage(Page):
         FieldPanel("body"),
     ]
 
+    class Meta:
+        verbose_name = "Home Page"
+        verbose_name_plural = "Home Pages"
 
 class Category(models.Model):
     name = models.CharField(max_length=1000, unique=True)
